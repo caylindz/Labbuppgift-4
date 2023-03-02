@@ -1,0 +1,17 @@
+
+
+private static void writeToFile(){
+
+  try{
+      File output = new File("plats i minnet");
+      
+      ImageIO.write(newImage, "jpg", output);
+      
+      System.out.println("Writing complete");
+      
+    } catch (IOException e) {
+      System.out.println("Error" + e);
+    }
+  
+  
+}
