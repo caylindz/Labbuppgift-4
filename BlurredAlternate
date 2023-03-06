@@ -1,0 +1,41 @@
+package ce.kth.labb4.matcher;
+
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+
+public class Blur implements IimageMatcher{
+
+
+    public void Blur(){
+
+    }
+
+    @Override
+    public int[][] change(int[][] pixelMatrix) {
+
+        int[][] blurred = {
+                {1, 1, 1},
+                {1, 1, 1},
+                {1, 1, 1}
+        };
+
+        int[][] pixelMatrixOut = new int[pixelMatrix.length][pixelMatrix[0].length];
+
+
+        for (int i = 0; i < pixelMatrix.length; i++) {
+            for (int j = 0; j < pixelMatrix[0].length; j++) {
+                int sum = 0;
+                for (int p = -1; p < 2; p++) {
+                    for (int q = -1; q < 2; q++) {
+                        if ((i + p) >= 0 && (i + p) < pixelMatrix.length && (j + q) >= 0 && (j + q) < pixelMatrix[0].length) {
+                            sum += blurred[p + 1][q + 1] * pixelMatrix[i + p][j + q];
+                        }
+                    }
+                }
+
+                pixelMatrixOut[i][j] = sum / 9;
+            }
+        }
+        return pixelMatrixOut;
+    }
+}
