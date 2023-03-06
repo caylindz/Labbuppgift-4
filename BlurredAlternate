@@ -1,6 +1,12 @@
+
+
 package ce.kth.labb4.matcher;
 
+import ce.kth.labb4.model.Converter;
+import ce.kth.labb4.model.ImageToFilesIO;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.effect.BoxBlur;
 import javafx.scene.paint.Color;
 
 public class Blur implements IimageMatcher{
@@ -12,30 +18,20 @@ public class Blur implements IimageMatcher{
 
     @Override
     public int[][] change(int[][] pixelMatrix) {
+        Converter converter = new Converter();
+        Image blurImage = converter.ImageFromPixels(pixelMatrix);
+        int[][] pixelMatrixOUT;
 
-        int[][] blurred = {
-                {1, 1, 1},
-                {1, 1, 1},
-                {1, 1, 1}
-        };
+        ImageView blurr = new ImageView(blurImage);
 
-        int[][] pixelMatrixOut = new int[pixelMatrix.length][pixelMatrix[0].length];
+        BoxBlur boxBlur = new BoxBlur(800,1200,100);
+        blurr.setEffect(boxBlur);
 
 
-        for (int i = 0; i < pixelMatrix.length; i++) {
-            for (int j = 0; j < pixelMatrix[0].length; j++) {
-                int sum = 0;
-                for (int p = -1; p < 2; p++) {
-                    for (int q = -1; q < 2; q++) {
-                        if ((i + p) >= 0 && (i + p) < pixelMatrix.length && (j + q) >= 0 && (j + q) < pixelMatrix[0].length) {
-                            sum += blurred[p + 1][q + 1] * pixelMatrix[i + p][j + q];
-                        }
-                    }
-                }
+        pixelMatrixOUT = converter.ConvertedToPixels(blurImage);
 
-                pixelMatrixOut[i][j] = sum / 9;
-            }
-        }
-        return pixelMatrixOut;
+        return pixelMatrixOUT;
     }
+
+
 }
