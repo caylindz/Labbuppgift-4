@@ -1,17 +1,20 @@
 package ce.kth.labb4.model;
 
-import javafx.scene.paint.Color;
+//import javafx.scene.paint.Color;
+import java.awt.Color;
 
 import java.util.Arrays;
 
 public class Histogram {
 
     int[][] image;
+    int [][] intensity = new int [3][256];
 
     public Histogram(int[][] image) {
 
         this.image = image;
-        calculateIntensity();
+        //calculateIntensity();
+        //toString();
 
     }
 
@@ -22,7 +25,7 @@ public class Histogram {
         int [] intensityGreen = new int[256];
         int [] intensityBlue = new int[256];
 
-        int [][] intensity = new int [256][3];
+        //int [][] intensity = new int [256][3];
 
 
         for (int i=0; i< image.length; i++){
@@ -43,23 +46,23 @@ public class Histogram {
 
 
                 intensityRed[red] ++;
-                intensityGreen[green] = +1;
-                intensityBlue[blue] = +1;
+                intensityGreen[green] ++;
+                intensityBlue[blue] ++;
 
                 //För varje intensitet som vi fick fram har vi nu sagt åt arrayen att det finns
                 // en till pixel med just den intensiteten!
             }
         }
 
-        for (int k=0; k<265; k++){
-            intensity [k][1] = intensityRed[k];
-            intensity [k][2] = intensityGreen[k];
-            intensity [k][3] = intensityBlue[k];
+        for (int k=0; k<256; k++){
+            intensity [0][k] = intensityRed[k];
+            intensity [1][k] = intensityGreen[k];
+            intensity [2][k] = intensityBlue[k];
         }
 
-        System.out.println(Arrays.toString(intensityRed));
+        /**System.out.println(Arrays.toString(intensityRed));
         System.out.println(Arrays.toString(intensityGreen));
-        System.out.println(Arrays.toString(intensityBlue));
+        System.out.println(Arrays.toString(intensityBlue));**/
 
         //För att kolla om det fungerar sen! Borde skriva ut tre arrays med värden som histogrammet
         // kan använda sig av
@@ -67,6 +70,13 @@ public class Histogram {
         return intensity;
     }
 
+    @Override
+    public String toString() {
 
-
+        return "Histogram:" +
+                "\nReds: " + Arrays.toString(intensity[0])+
+                "\nGreen: " + Arrays.toString(intensity[1]) +
+                "\nBlues: " + Arrays.toString(intensity[2]);
+    }
 }
+
