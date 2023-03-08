@@ -25,16 +25,14 @@ public class MainTry {
         picHistogram.calculateIntensity();
         System.out.println(picHistogram);
 
-        //BlackAndWhite match = new BlackAndWhite();
-        //match.change(pixelated);
+        BlackAndWhite BW = new BlackAndWhite();
+        pixelated = BW.change(pixelated);
 
         //Blur blurred = new Blur(15);
         //pixelated = blurred.change(pixelated);
 
         //Contrast contraster = new Contrast(100,50);
         //pixelated = contraster.change(pixelated);
-
-
 
 
         Image loadImage = newconvert.ImageFromPixels(pixelated);
