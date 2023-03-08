@@ -13,7 +13,7 @@ import javafx.scene.image.WritableImage;
 public class Converter{
     private int [][] ConvertedToPixels;
 
-
+/** Converts any image into an int[][] with color values and vice versa **/
     public void Converter() {
 
     }
@@ -46,14 +46,13 @@ public class Converter{
 
                 int aValue = ((convertedPixels[i][j] >> 24) & 0xff);
                 int rValue = ((convertedPixels[i][j] >> 16) & 0xff);
-                int gValue = ((convertedPixels[i][j]>> 8) & 0xff);
+                int gValue = ((convertedPixels[i][j] >> 8) & 0xff);
                 int bValue = ((convertedPixels[i][j]) & 0xff);
 
                 int color = (aValue << 24) | (rValue << 16) | (gValue << 8) | bValue;
                 writer.setArgb(j, i, color);
             }
         }
-
             return PixelsToImage;
         }
 

@@ -14,6 +14,7 @@ public class Blur implements IimageMatcher{
         this.iterations = iterations;
     }
 
+    /** Uses the average color intensity of a 3x3 grid to blur the image for all colors **/
     @Override
     public int[][] change(int[][] pixelMatrix) {
 

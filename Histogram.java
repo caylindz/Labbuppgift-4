@@ -6,9 +6,8 @@ import java.awt.Color;
 import java.util.Arrays;
 
 public class Histogram {
-
-    int[][] image;
     int [][] intensity = new int [3][256];
+    int[][] image;
 
     public Histogram(int[][] image) {
 
@@ -18,7 +17,7 @@ public class Histogram {
 
     }
 
-
+/** Seperates and counts color instensities by color and sorts into a 3x256 matrix representeing RGB and the 256 color intensities **/
     public int [][] calculateIntensity(){
 
         int [] intensityRed = new int[256];
@@ -60,14 +59,18 @@ public class Histogram {
             intensity [2][k] = intensityBlue[k];
         }
 
-        /**System.out.println(Arrays.toString(intensityRed));
-        System.out.println(Arrays.toString(intensityGreen));
-        System.out.println(Arrays.toString(intensityBlue));**/
 
         //För att kolla om det fungerar sen! Borde skriva ut tre arrays med värden som histogrammet
         // kan använda sig av
 
-        return intensity;
+        int[][] histo = new int[3][256];
+        for(int i=0; i<256; i++){
+            for(int j=0; j<3; j++){
+                histo[j][i]=intensity[j][i];
+            }
+        }
+
+        return histo;
     }
 
     @Override

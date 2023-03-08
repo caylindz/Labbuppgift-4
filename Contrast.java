@@ -17,7 +17,7 @@ public class Contrast implements IimageMatcher{
         b = level + (window/2);
     }
 
-
+/** Intensifies certain color values within a range (level and window) **/
     @Override
     public int[][] change(int[][] pixelMatrix) {
 
